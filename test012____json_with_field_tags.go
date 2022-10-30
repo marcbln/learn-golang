@@ -14,7 +14,7 @@ type CustomerWithFieldTags struct {
 }
 
 func main() {
-	fmt.Printf("example 11\n")
+	fmt.Printf("example 12\n")
 
 	// create customer struct
 	customer := &CustomerWithFieldTags{
