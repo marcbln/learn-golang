@@ -7,7 +7,6 @@ import (
 )
 
 func main() {
-	fmt.Printf("example 14\n")
 	w := tabwriter.NewWriter(os.Stdout, 10, 0, 2, '.', tabwriter.Debug)
 
 	fmt.Fprintln(w, "some\trow\tA")
