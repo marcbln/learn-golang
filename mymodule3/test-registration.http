@@ -1,0 +1,4 @@
+POST http://localhost:8383
+Content-Type: application/x-www-form-urlencoded
+
+Firstname=Marc&Lastname=Christenfeldt&TermsAccepted=true&Company=None&Email=a@bc.de&CourseCode=C1022&Date=2022-10-31
