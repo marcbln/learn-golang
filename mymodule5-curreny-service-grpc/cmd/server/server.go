@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	hclog "github.com/hashicorp/go-hclog"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -11,6 +12,8 @@ import (
 )
 
 func main() {
+	const ADDRESS = ":9092"
+
 	log := hclog.Default()
 	gs := grpc.NewServer()
 	cs := server.NewCurrency(log)
@@ -19,7 +22,8 @@ func main() {
 	// enable reflection api so that grpcurl can use it: grpcurl --plaintext localhost:9092 list (remove on production)
 	reflection.Register(gs)
 
-	l, err := net.Listen("tcp", ":9092")
+	fmt.Printf("listening to address %s\n", ADDRESS)
+	l, err := net.Listen("tcp", ADDRESS)
 	if err != nil {
 		log.Error("Unable to listen", "error", err)
 		os.Exit(1)
