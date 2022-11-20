@@ -26,4 +26,5 @@ func main() {
 	resp, err := cc.GetRate(context.Background(), rr)
 
 	fmt.Printf("resp: %#v\n", resp)
+	fmt.Printf("\n\n===== The rate is: %v\n\n", resp.Rate)
 }
