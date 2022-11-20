@@ -8,10 +8,17 @@ service Currency {
 }
 
 message RateRequest {
-    string Base = 1;
-    string Destination = 2;
+    Currencies Base = 1;
+    Currencies Destination = 2;
 }
 
 message RateResponse {
     float Rate = 1;
+}
+
+enum Currencies {
+    EUR=0;
+    GBP=1;
+    USD=2;
+    JPY=3;
 }

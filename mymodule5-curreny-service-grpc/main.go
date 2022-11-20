@@ -16,7 +16,7 @@ func main() {
 	cs := server.NewCurrency(log)
 	protos.RegisterCurrencyServer(gs, cs)
 
-	// enable reflection api so that grpcurl can use it: grpcurl --plaintext localhost:9092 list
+	// enable reflection api so that grpcurl can use it: grpcurl --plaintext localhost:9092 list (remove on production)
 	reflection.Register(gs)
 
 	l, err := net.Listen("tcp", ":9092")
