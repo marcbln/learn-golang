@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"encoding/json"
 	"log"
 	"mymodule6-rest/data"
 	"net/http"
@@ -18,10 +17,27 @@ func NewProductsHandler(l *log.Logger) *ProductsHandler {
 }
 
 func (self *ProductsHandler) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
-	products := data.GetProducts()
-	ret, err := json.Marshal(products)
-	if err != nil {
-		http.Error(rw, "Unable to marshal json", http.StatusInternalServerError)
+
+	// ---- handle get
+	if req.Method == http.MethodGet {
+		self.getProducts(rw, req)
+		return
 	}
-	rw.Write(ret)
+
+	// ---- handle update (PUT)
+	if req.Method == http.MethodPut {
+		http.Error(rw, "TODO: implement PUT", http.StatusNotImplemented)
+		return
+	}
+
+	// catch-all
+	rw.WriteHeader(http.StatusMethodNotAllowed)
+}
+
+func (self *ProductsHandler) getProducts(rw http.ResponseWriter, req *http.Request) {
+	products := data.GetProducts()
+	err := products.ToJSON(rw)
+	if err != nil {
+		http.Error(rw, "Unable to json encode", http.StatusInternalServerError)
+	}
 }
