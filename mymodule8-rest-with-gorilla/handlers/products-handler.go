@@ -4,6 +4,7 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"mymodule8-rest-with-gorilla/data"
+	"mymodule8-rest-with-gorilla/middleware"
 	"net/http"
 	"strconv"
 )
@@ -28,14 +29,7 @@ func (self *ProductsHandler) GetProducts(rw http.ResponseWriter, req *http.Reque
 
 func (self *ProductsHandler) AddProduct(rw http.ResponseWriter, req *http.Request) {
 	self.l.Println("Handle POST /products")
-	// ---- deserialize product from json
-	product := &data.Product{}
-	err := product.FromJSON(req.Body)
-	if err != nil {
-		http.Error(rw, "json decoding failed", http.StatusBadRequest)
-		return
-	}
-	self.l.Printf("%#v", product)
+	product := req.Context().Value(middleware.KeyProduct{}).(*data.Product)
 
 	// ---- add product to storage
 	data.AddProduct(product)
@@ -49,14 +43,7 @@ func (self *ProductsHandler) UpdateProduct(rw http.ResponseWriter, req *http.Req
 		http.Error(rw, "atoi fail", http.StatusBadRequest)
 	}
 
-	// ---- deserialize product from json
-	product := &data.Product{}
-	err = product.FromJSON(req.Body)
-	if err != nil {
-		http.Error(rw, "json decoding failed", http.StatusBadRequest)
-		return
-	}
-	self.l.Printf("%#v", product)
+	product := req.Context().Value(middleware.KeyProduct{}).(*data.Product)
 
 	// ---- add product to storage
 	err = data.UpdateProduct(id, product)

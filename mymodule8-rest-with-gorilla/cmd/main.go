@@ -39,9 +39,11 @@ func main() {
 	// ---- router for PUT requests
 	putRouter := muxRouter.Methods(http.MethodPut).Subrouter()
 	putRouter.HandleFunc("/products/{id:[0-9]+}", productHandler.UpdateProduct)
+	putRouter.Use(middleware.ProductDeserializerMiddleware)
 	// ---- router for POST requests
 	postRouter := muxRouter.Methods(http.MethodPost).Subrouter()
 	postRouter.HandleFunc("/products", productHandler.AddProduct)
+	postRouter.Use(middleware.ProductDeserializerMiddleware)
 
 	// ---- create a new server
 	server := http.Server{
