@@ -6,6 +6,7 @@ import (
 	"github.com/nicholasjackson/env"
 	"log"
 	"mymodule8-rest-with-gorilla/handlers"
+	"mymodule8-rest-with-gorilla/middleware"
 	"net/http"
 	"os"
 	"os/signal"
@@ -13,6 +14,7 @@ import (
 )
 
 var bindAddress = env.String("BIND_ADDRESS", false, ":9090", "Bind address for the server")
+var shutdownWait = env.Int("SHUTDOWN_WAIT", false, 15, "the duration in seconds for which the server gracefully shutdownWait for existing connections to finish")
 
 func main() {
 	err := env.Parse()
@@ -26,22 +28,25 @@ func main() {
 	productHandler := handlers.NewProductsHandler(l)
 
 	// ---- create a new serve mux and register the handlers
-	router := mux.NewRouter() // was http.ServeMux before
+	muxRouter := mux.NewRouter() // was http.ServeMux before
+
+	// ---- middleware
+	muxRouter.Use(middleware.LoggingMiddleware)
 
 	// ---- router for GET requests
-	getRouter := router.Methods(http.MethodGet).Subrouter()
+	getRouter := muxRouter.Methods(http.MethodGet).Subrouter()
 	getRouter.HandleFunc("/products", productHandler.GetProducts)
 	// ---- router for PUT requests
-	putRouter := router.Methods(http.MethodPut).Subrouter()
+	putRouter := muxRouter.Methods(http.MethodPut).Subrouter()
 	putRouter.HandleFunc("/products/{id:[0-9]+}", productHandler.UpdateProduct)
 	// ---- router for POST requests
-	postRouter := router.Methods(http.MethodPost).Subrouter()
+	postRouter := muxRouter.Methods(http.MethodPost).Subrouter()
 	postRouter.HandleFunc("/products", productHandler.AddProduct)
 
 	// ---- create a new server
 	server := http.Server{
 		Addr:         *bindAddress,
-		Handler:      router,
+		Handler:      muxRouter,
 		ErrorLog:     l,
 		ReadTimeout:  5 * time.Second,   // max time to read request from the client
 		WriteTimeout: 10 * time.Second,  // max time to write response to the client
@@ -60,14 +65,14 @@ func main() {
 		l.Printf("starting server on %s\n", *bindAddress)
 		err := server.ListenAndServe()
 		if err != nil {
-			//l.Printf("Error starting server: %s\n", err)
-			//os.Exit(1)
-			l.Fatal(err)
+			l.Printf("Error starting server: %s\n", err)
+			os.Exit(77)
+			// l.Fatal(err)
 		}
 	}()
 
 	// ---- trap sigterm or interrupt and gracefully shutdown the server
-	sigChan := make(chan os.Signal)
+	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan, os.Interrupt)
 	signal.Notify(sigChan, os.Kill)
 
@@ -75,7 +80,15 @@ func main() {
 	sig := <-sigChan
 	l.Println("received terminate - graceful shutdown", sig)
 
-	// ---- shutdown with a deadline context
-	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
+	// Create a deadline to shutdownWait for.
+	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(*shutdownWait)*time.Second)
+	defer cancel()
+	// Doesn't block if no connections, but will otherwise shutdownWait
+	// until the timeout deadline.
 	server.Shutdown(ctx)
+	// Optionally, you could run srv.Shutdown in a goroutine and block on
+	// <-ctx.Done() if your application should shutdownWait for other services
+	// to finalize based on context cancellation.
+	log.Println("shutting down")
+	os.Exit(0)
 }
