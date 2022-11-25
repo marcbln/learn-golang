@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	// create a client with some custom configuation
+	// create a client with some custom configuration
 	client := http.Client{
 		Transport: &http.Transport{
 			ResponseHeaderTimeout: 1000 * time.Millisecond,
