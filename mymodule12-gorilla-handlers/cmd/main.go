@@ -30,7 +30,8 @@ func main() {
 	mux.Handle("/compressed", handlers.CompressHandler(http.HandlerFunc(getBigResponse)))
 	mux.Handle("/hello", handlers.ContentTypeHandler(http.HandlerFunc(getHello), "application/x-www-form-urlencoded"))
 
-	err := http.ListenAndServe(":8181", mux)
+	// LoggingHandler logs in Apache Common Log Format (CLF)
+	err := http.ListenAndServe(":8181", handlers.LoggingHandler(os.Stdout, mux))
 	if errors.Is(err, http.ErrServerClosed) { // ErrServerClosed is returned after a call to Shutdown or Close.
 		fmt.Printf("server closed\n")
 	} else if err != nil {
