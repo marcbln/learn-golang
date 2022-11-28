@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .appName }}</title>
+</head>
+<body>
+    <h1>{{ .appName }}</h1>
+    <form method="POST" action="/handle-form">
+        <input name="Firstname" placeholder="Firstname">
+        <input name="Lastname" placeholder="Lastname">
+        <button type="submit">GO!</button>
+    </form>
+</body>
+</html>
