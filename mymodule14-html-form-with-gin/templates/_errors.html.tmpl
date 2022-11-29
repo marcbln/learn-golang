@@ -1,0 +1,10 @@
+{{ if .errors }}
+    <ul>
+    {{ range .errors }}
+        <li class="error">
+            {{ . }}
+        </li>
+    {{  end  }}
+    </ul>
+{{ end }}
+
