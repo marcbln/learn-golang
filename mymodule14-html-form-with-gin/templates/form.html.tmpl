@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .appName }}</title>
+</head>
+<body>
+<h1>{{ .appName }}</h1>
+<form method="POST">
+
+
+    {{ template "_errors.html.tmpl" . }}
+
+    <div>
+        <label for="firstname">
+            Firstname
+        </label>
+        <input name="firstname" id="firstname" value="{{ .userRegistration.Firstname }}" placeholder="Firstname">
+    </div>
+
+    <div>
+        <label for="lastname">
+            Lastname
+        </label>
+        <input name="lastname" id="lastname"  value="{{ .userRegistration.Lastname }}" placeholder="Lastname">
+    </div>
+
+    <div>
+        <label for="termsAccepted">
+            I accept TOS
+        </label>
+        <input type="checkbox" name="termsAccepted" id="termsAccepted" value="1" {{ if .userRegistration.TermsAccepted }}checked{{ end }}>
+    </div>
+
+    <button type="submit">GO!</button>
+
+
+</form>
+</body>
+<style>
+
+    label {
+        display: inline-block;
+        width: 300px;
+    }
+    .error {
+        color: red;
+    }
+</style>
+</html>

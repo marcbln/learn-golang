@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Client App</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        function alpineData() {
+            return {
+                err: null,
+                resp: null,
+                fetchData() {
+                    this.err = null;
+                    this.resp = null;
+                    axios.get("http://localhost:8181/products").then(response => {
+                        // console.log(response)
+                        this.resp = JSON.stringify(response)
+                    }, err => {
+                        this.err = JSON.stringify(err)
+                    })
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div x-data="alpineData()">
+    <button @click="fetchData">Fetch Data</button>
+    <div style="color:red" x-text="err"></div>
+    <div style="color:green" x-text="resp"></div>
+</div>
+</body>
+</html>
