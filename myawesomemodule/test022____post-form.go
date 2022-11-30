@@ -9,12 +9,12 @@ import (
 
 func main() {
 	postData := url.Values{
-		"Firstname":             {"Peter"},
-		"Lastname":              {"Lustig"},
-		"DatenschutzAkzeptiert": {"true"},
-		"Datum":                 {"2020-10-12"},
-		"Schulungscode":         {"GO.EINF"},
-		"Email":                 {"info@source-fellows.com"},
+		"Firstname":     {"Peter"},
+		"Lastname":      {"Lustig"},
+		"TermsAccepted": {"true"},
+		"Datum":         {"2020-10-12"},
+		"Schulungscode": {"GO.EINF"},
+		"Email":         {"info@source-fellows.com"},
 	}
 	log.Printf("postData: %#v", postData)
 

@@ -1,6 +1,6 @@
 package data
 
-// UserRegistration ist das zentrale Domänenobjekt des UserRegistrationService
+// the model / domain entity
 type UserRegistration struct {
 	RequestId string `form:"-"` // uuid of web request
 	ID        string `form:"-" bson:"_id, omitempty"`
