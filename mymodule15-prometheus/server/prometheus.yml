@@ -1,0 +1,12 @@
+# prometheus "scrape config"
+global:
+    scrape_interval: 1m
+    external_labels:
+        monitor: "simple monitor"
+scrape_configs:
+    - job_name: "the-application"
+      static_configs:
+#          -   targets: ["host.docker.internal:8080"]
+          -   targets: ["172.17.0.1:8080"]
+
+
