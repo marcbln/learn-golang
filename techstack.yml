@@ -1,7 +1,8 @@
 repo_name: marcbln/learn-golang
 report_id: '080b069b635249ef44111c3cf36ea723'
+version: 0.1
 repo_type: Public
-timestamp: '2023-11-09T18:05:20+00:00'
+timestamp: '2024-01-04T15:10:57+00:00'
 requested_by: whyoo-os
 provider: github
 branch: main
@@ -17,6 +18,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1005/O6AczwfV_400x400.png
+  detection_source_url: https://github.com/marcbln/learn-golang
   detection_source: Repo Metadata
 - name: Gin Gonic
   description: 'HTTP web framework written in Go '
@@ -27,7 +29,8 @@ tools:
   category: Languages & Frameworks
   sub_category: Frameworks (Full Stack)
   image_url: https://img.stackshare.io/service/4221/7894478.png
-  detection_source: mymodule14-html-form-with-gin/go.mod
+  detection_source_url: https://github.com/marcbln/learn-golang/blob/main/myawesomemodule/go.mod
+  detection_source: myawesomemodule/go.mod
   last_updated_by: Marc Christenfeldt
   last_updated_on: 2022-11-28 10:31:47.000000000 Z
 - name: Protobuf
@@ -38,7 +41,8 @@ tools:
   category: Languages & Frameworks
   sub_category: Serialization Frameworks
   image_url: https://img.stackshare.io/service/4393/ma2jqJKH_400x400.png
-  detection_source: mymodule5-curreny-service-grpc/go.mod
+  detection_source_url: https://github.com/marcbln/learn-golang/blob/main/grpc-example-from-google/grpc-go-1.50.0/cmd/protoc-gen-go-grpc/go.mod
+  detection_source: grpc-example-from-google/grpc-go-1.50.0/cmd/protoc-gen-go-grpc/go.mod
   last_updated_by: Marc Christenfeldt
   last_updated_on: 2022-11-05 10:49:52.000000000 Z
 - name: gRPC
@@ -50,7 +54,8 @@ tools:
   category: Languages & Frameworks
   sub_category: Remote Procedure Call (RPC)
   image_url: https://img.stackshare.io/service/4670/default_d811b0ac72205af84aca21f967594338580be913.png
-  detection_source: mymodule5-curreny-service-grpc/go.mod
+  detection_source_url: https://github.com/marcbln/learn-golang/blob/main/grpc-example-from-google/grpc-go-1.50.0/examples/go.mod
+  detection_source: grpc-example-from-google/grpc-go-1.50.0/examples/go.mod
   last_updated_by: Marc Christenfeldt
   last_updated_on: 2022-11-05 10:49:52.000000000 Z
 - name: MySQL
@@ -61,7 +66,8 @@ tools:
   category: Data Stores
   sub_category: Databases
   image_url: https://img.stackshare.io/service/1025/logo-mysql-170x170.png
-  detection_source: mymodule18-sqlx/go.mod
+  detection_source_url: https://github.com/marcbln/learn-golang/blob/main/mymodule16-mysql/go.mod
+  detection_source: mymodule16-mysql/go.mod
   last_updated_by: Marc Christenfeldt
   last_updated_on: 2022-12-02 19:39:29.000000000 Z
 - name: Docker
@@ -73,6 +79,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Virtual Machine Platforms & Containers
   image_url: https://img.stackshare.io/service/586/n4u37v9t_400x400.png
+  detection_source_url: https://github.com/marcbln/learn-golang
   detection_source: Repo Metadata
 - name: Git
   description: Fast, scalable, distributed revision control system
@@ -82,6 +89,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/marcbln/learn-golang
   detection_source: Repo Metadata
 - name: OpenCensus
   description: A single distribution of libraries that automatically collect traces
@@ -92,7 +100,8 @@ tools:
   category: Monitoring
   sub_category: Performance Monitoring
   image_url: https://img.stackshare.io/service/10794/EpBd2Xrw_400x400.jpg
-  detection_source: grpc-example-from-google/grpc-go-1.50.0/go.mod
+  detection_source_url: https://github.com/marcbln/learn-golang/blob/main/grpc-example-from-google/grpc-go-1.50.0/gcp/observability/go.mod
+  detection_source: grpc-example-from-google/grpc-go-1.50.0/gcp/observability/go.mod
   last_updated_by: Marc Christenfeldt
   last_updated_on: 2022-11-05 10:49:52.000000000 Z
 - name: Prometheus
@@ -105,7 +114,8 @@ tools:
   category: Monitoring
   sub_category: Monitoring Tools
   image_url: https://img.stackshare.io/service/2501/default_3cf1b307194b26782be5cb209d30360580ae5b3c.png
-  detection_source: mymodule15-prometheus/server/prometheus.yml
+  detection_source_url: https://github.com/marcbln/learn-golang/blob/main/mymodule15-prometheus/go.mod
+  detection_source: mymodule15-prometheus/go.mod
   last_updated_by: Marc Christenfeldt
   last_updated_on: 2022-11-30 21:11:33.000000000 Z
 - name: Testify
@@ -118,7 +128,8 @@ tools:
   category: Build, Test, Deploy
   sub_category: Go Testing
   image_url: https://img.stackshare.io/service/8695/stretchr.png
-  detection_source: mymodule10-application-monitoring/go.mod
+  detection_source_url: https://github.com/marcbln/learn-golang/blob/main/building-microservices-youtube-ep7/product-api/go.mod
+  detection_source: building-microservices-youtube-ep7/product-api/go.mod
   last_updated_by: Marc Christenfeldt
   last_updated_on: 2022-11-24 21:05:45.000000000 Z
 - name: Shell
@@ -130,4 +141,5 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source_url: https://github.com/marcbln/learn-golang
   detection_source: Repo Metadata
